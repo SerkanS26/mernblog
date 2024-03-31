@@ -9,12 +9,14 @@ import dotenv from "dotenv";
 dotenv.config();
 
 // import database
+import connectDB from "./config/db.js";
 
 // middleware
 
 // import routes
 
 // database connection
+connectDB();
 
 const app = express();
 
