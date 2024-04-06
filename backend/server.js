@@ -1,19 +1,23 @@
 import express from "express";
 
-import cookieParser from "cookie-parser";
-
 // cookie-parser
+import cookieParser from "cookie-parser";
 
 //dotenv
 import dotenv from "dotenv";
 dotenv.config();
 
-// import database
+// import database connection
 import connectDB from "./config/db.js";
 
 // middleware
+import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 
-// import routes
+// Import Routes
+import postRoutes from "./routes/postRoutes.js";
+
+// port
+const PORT = process.env.PORT || 5000;
 
 // database connection
 connectDB();
@@ -29,12 +33,13 @@ app.use(cookieParser());
 
 // Routes
 
-// port
-const PORT = process.env.PORT || 5000;
+app.use("/api/posts", postRoutes);
 
 // not found middleware
+app.use(notFound);
 
 // error handler middleware
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

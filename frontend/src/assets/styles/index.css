@@ -9,6 +9,13 @@ main {
   white-space: nowrap; /* Prevent wrapping */
 }
 
+.home-image {
+  width: 100%;
+}
+.button-bg-color {
+  background-color: #355886;
+}
+
 /* table td,
 table th {
   text-align: center;

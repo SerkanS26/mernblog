@@ -15,7 +15,12 @@ import SDLogo from "../assets/SerDev.png";
 const Header = () => {
   return (
     <header>
-      <Navbar bg="dark" variant="dark" expand="md" collapseOnSelect>
+      <Navbar
+        style={{ backgroundColor: "#355886" }}
+        variant="dark"
+        expand="md"
+        collapseOnSelect
+      >
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand className="">

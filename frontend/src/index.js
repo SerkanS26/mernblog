@@ -9,6 +9,10 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
+// Redux & Store
+import { Provider } from "react-redux";
+import store from "./store";
+
 // Importing the Bootstrap CSS and index.css
 import "./assets/styles/bootstrap.custom.css";
 import "./assets/styles/index.css";
@@ -18,11 +22,13 @@ import reportWebVitals from "./reportWebVitals";
 
 // screens
 import HomeScreen from "./screens/HomeScreen";
+import PostScreen from "./screens/PostScreen";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<HomeScreen />} />
+      <Route path="/posts/:id" element={<PostScreen />} />
     </Route>
   )
 );
@@ -30,7 +36,9 @@ const router = createBrowserRouter(
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
 
