@@ -1,4 +1,4 @@
-import { POSTS_URL } from "../constants";
+import { POSTS_URL } from "../../constants";
 import { apiSlice } from "./apiSlice";
 
 export const postsApiSlice = apiSlice.injectEndpoints({

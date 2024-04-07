@@ -8,7 +8,7 @@ import Message from "../components/Message";
 import Post from "../components/Post";
 
 // apiCall
-import { useGetPostsQuery } from "../slices/postsApiSlice";
+import { useGetPostsQuery } from "../slices/ReduxApiCalls/postsApiSlice";
 
 const HomeScreen = () => {
   const { data, error, isLoading } = useGetPostsQuery();

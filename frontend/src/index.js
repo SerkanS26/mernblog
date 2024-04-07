@@ -23,12 +23,30 @@ import reportWebVitals from "./reportWebVitals";
 // screens
 import HomeScreen from "./screens/HomeScreen";
 import PostScreen from "./screens/PostScreen";
+import LoginScreen from "./screens/LoginScreen";
+
+// PrivateRoute component
+import PrivateRoute from "./components/PrivateRoute";
+
+// AdminRoute component
+import AdminRoute from "./components/AdminRoute";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<HomeScreen />} />
       <Route path="/posts/:id" element={<PostScreen />} />
+      <Route path="/login" element={<LoginScreen />} />
+
+      {/* Private Route */}
+      <Route path="" element={<PrivateRoute />}>
+        {/* <Route path="/profile" element={<ProfileScreen />} /> */}
+      </Route>
+
+      {/* Admin Route */}
+      <Route path="" element={<AdminRoute />}>
+        {/* admin/postlist, admin/post/:id/edit ,admin/userlist , admin/user/:id/edit */}
+      </Route>
     </Route>
   )
 );
