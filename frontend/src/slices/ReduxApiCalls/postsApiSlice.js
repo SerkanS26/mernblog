@@ -1,4 +1,4 @@
-import { POSTS_URL } from "../../constants";
+import { POSTS_URL, UPLOAD_URL } from "../../constants";
 import { apiSlice } from "./apiSlice";
 
 export const postsApiSlice = apiSlice.injectEndpoints({
@@ -16,7 +16,48 @@ export const postsApiSlice = apiSlice.injectEndpoints({
       }),
       keepUnusedDataFor: 5,
     }),
+    createPost: builder.mutation({
+      query: () => ({
+        url: POSTS_URL,
+        method: "POST",
+      }),
+      invalidatesTags: ["Post"],
+    }),
+    updatePost: builder.mutation({
+      query: (data) => ({
+        url: `${POSTS_URL}/${data.postId}`,
+        method: "PUT",
+        body: data,
+      }),
+    }),
+    uploadPostImage: builder.mutation({
+      query: (data) => ({
+        url: UPLOAD_URL,
+        method: "POST",
+        body: data,
+      }),
+    }),
+    deletePost: builder.mutation({
+      query: (postId) => ({
+        url: `${POSTS_URL}/${postId}`,
+        method: "DELETE",
+      }),
+    }),
+    getMyPosts: builder.query({
+      query: () => ({
+        url: `${POSTS_URL}/myposts`,
+      }),
+      keepUnusedDataFor: 5,
+    }),
   }),
 });
 
-export const { useGetPostsQuery, useGetPostDetailsQuery } = postsApiSlice;
+export const {
+  useGetPostsQuery,
+  useGetPostDetailsQuery,
+  useGetMyPostsQuery,
+  useCreatePostMutation,
+  useDeletePostMutation,
+  useUpdatePostMutation,
+  useUploadPostImageMutation,
+} = postsApiSlice;

@@ -18,6 +18,7 @@ import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 // Import Routes
 import postRoutes from "./routes/postRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import uploadRoutes from "./routes/uploadRoutes.js";
 
 // port
 const PORT = process.env.PORT || 5000;
@@ -38,6 +39,7 @@ app.use(cookieParser());
 
 app.use("/api/posts", postRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/upload", uploadRoutes);
 
 // set __dirname to current directory
 const __dirname = path.resolve();
