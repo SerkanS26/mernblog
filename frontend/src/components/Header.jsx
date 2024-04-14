@@ -39,9 +39,13 @@ const Header = () => {
     }
   };
   return (
-    <header>
+    <header style={{ position: "sticky", top: "0", zIndex: "1000" }}>
       <Navbar
-        style={{ backgroundColor: "#355886" }}
+        style={{
+          backgroundColor: "rgba(53, 88, 134, .7)",
+          backdropFilter: "blur(10px)",
+        }}
+        className="shadow-5"
         variant="dark"
         expand="md"
         collapseOnSelect

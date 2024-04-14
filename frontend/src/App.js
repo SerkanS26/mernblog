@@ -14,7 +14,7 @@ import Footer from "./components/Footer";
 
 function App() {
   return (
-    <>
+    <div style={{ backgroundColor: "#FEFAF6" }}>
       <Header />
 
       <main className="py-3">
@@ -25,7 +25,7 @@ function App() {
 
       <Footer />
       <ToastContainer />
-    </>
+    </div>
   );
 }
 

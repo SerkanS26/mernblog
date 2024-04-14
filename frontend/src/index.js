@@ -24,6 +24,8 @@ import reportWebVitals from "./reportWebVitals";
 import HomeScreen from "./screens/HomeScreen";
 import PostScreen from "./screens/PostScreen";
 import LoginScreen from "./screens/LoginScreen";
+import RegisterScreen from "./screens/RegisterScreen";
+import ProfileScreen from "./screens/ProfileScreen";
 
 // PrivateRoute component
 import PrivateRoute from "./components/PrivateRoute";
@@ -37,10 +39,11 @@ const router = createBrowserRouter(
       <Route index={true} path="/" element={<HomeScreen />} />
       <Route path="/posts/:id" element={<PostScreen />} />
       <Route path="/login" element={<LoginScreen />} />
+      <Route path="/register" element={<RegisterScreen />} />
 
       {/* Private Route */}
       <Route path="" element={<PrivateRoute />}>
-        {/* <Route path="/profile" element={<ProfileScreen />} /> */}
+        <Route path="/profile" element={<ProfileScreen />} />
       </Route>
 
       {/* Admin Route */}

@@ -1,3 +1,5 @@
+import path from "path";
+
 import express from "express";
 
 // cookie-parser
@@ -36,6 +38,26 @@ app.use(cookieParser());
 
 app.use("/api/posts", postRoutes);
 app.use("/api/users", userRoutes);
+
+// set __dirname to current directory
+const __dirname = path.resolve();
+
+// make the uploads folder static
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
+
+if (process.env.NODE_ENV === "production") {
+  //set static folder
+  app.use(express.static(path.join(__dirname, "/frontend/build")));
+
+  // any route that is not the api will be redirected to the index.html
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"))
+  );
+} else {
+  app.get("/", (req, res) => {
+    res.send("API is running...");
+  });
+}
 
 // not found middleware
 app.use(notFound);
