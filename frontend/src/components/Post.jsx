@@ -8,6 +8,7 @@ const Post = ({ post }) => {
       <Link to={`/posts/${post._id}`}>
         <Card.Img src={post.image} variant="top" />
       </Link>
+
       <Card.Body>
         <Link to={`/posts/${post._id}`}>
           <Card.Title as="div" className="post.title">
@@ -15,7 +16,9 @@ const Post = ({ post }) => {
           </Card.Title>
         </Link>
         <Card.Text as="div">
-          <div className="my-3">{post.description}</div>
+          <div className="my-3">
+            {post.description?.toString().substring(0, 50)}...
+          </div>
         </Card.Text>
       </Card.Body>
     </Card>
