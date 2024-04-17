@@ -186,61 +186,65 @@ const ProfileScreen = () => {
         </Col>
         <Col md={9}>
           <h2>My Posts</h2>
-          <Table striped bordered hover responsive className="table-sm">
-            <thead>
-              <tr>
-                <th>IMAGE</th>
-                <th>TITLE</th>
-                <th>CREATED AT</th>
-                <th>UPDATED AT</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {loadingMyPosts ? (
-                <Loader />
-              ) : error ? (
-                <Message variant="danger">{error.data.message}</Message>
-              ) : (
-                myPosts?.map((post) => (
-                  <tr key={post._id}>
-                    <td className="d-flex align-items-center justify-content-center">
-                      <img
-                        src={post.image}
-                        alt={post.title}
-                        style={{ width: "100px" }}
-                        fluid
-                      />
-                    </td>
-                    <td>{post.title.toString().substring(0, 50)}...</td>
-                    <td>{post.createdAt.toString().substring(0, 10)}</td>
-                    <td>{post.updatedAt.toString().substring(0, 10)}</td>
-                    <td>
-                      <LinkContainer
-                        to={`/posts/${post._id}/edit`}
-                        className=""
-                      >
-                        <Button
-                          variant="warning"
-                          className="btn-sm mx-2 my-1 text-white-50"
-                        >
-                          <FaEdit />
-                        </Button>
-                      </LinkContainer>
+          <>
+            {loadingMyPosts ? (
+              <Loader />
+            ) : error ? (
+              <Message variant="danger">{error}</Message>
+            ) : (
+              <>
+                <Table striped hover responsive className="table-sm">
+                  <thead>
+                    <tr>
+                      <th>IMAGE</th>
+                      <th>TITLE</th>
+                      <th>CREATED AT</th>
+                      <th>UPDATED AT</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {myPosts?.map((post) => (
+                      <tr key={post._id}>
+                        <td className="d-flex align-items-center justify-content-center">
+                          <img
+                            src={post.image}
+                            alt={post.title}
+                            className="img-thumbnail"
+                            style={{ width: "100px" }}
+                          />
+                        </td>
+                        <td>{post.title.toString().substring(0, 50)}...</td>
+                        <td>{post.createdAt.toString().substring(0, 10)}</td>
+                        <td>{post.updatedAt.toString().substring(0, 10)}</td>
+                        <td>
+                          <LinkContainer
+                            to={`/posts/${post._id}/edit`}
+                            className=""
+                          >
+                            <Button
+                              variant="warning"
+                              className="btn-sm mx-2 my-1 text-white-50"
+                            >
+                              <FaEdit />
+                            </Button>
+                          </LinkContainer>
 
-                      <Button
-                        variant="danger"
-                        className="btn-sm mx-2 my-1 text-white-50"
-                        onClick={() => deletePostHandler(post._id)}
-                      >
-                        <FaTrash />
-                      </Button>
-                    </td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </Table>
+                          <Button
+                            variant="danger"
+                            className="btn-sm mx-2 my-1 text-white-50"
+                            onClick={() => deletePostHandler(post._id)}
+                          >
+                            <FaTrash />
+                          </Button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+              </>
+            )}
+          </>
         </Col>
       </Row>
     </>

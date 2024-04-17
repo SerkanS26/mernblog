@@ -17,7 +17,9 @@ const Post = ({ post }) => {
         </Link>
         <Card.Text as="div">
           <div className="my-3">
-            {post.description?.toString().substring(0, 50)}...
+            {post.content?.toString().substring(0, 100)} ...
+            <br />
+            <Link to={`/posts/${post._id}`}>Read More</Link>
           </div>
         </Card.Text>
       </Card.Body>

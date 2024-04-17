@@ -29,6 +29,7 @@ export const postsApiSlice = apiSlice.injectEndpoints({
         method: "PUT",
         body: data,
       }),
+      invalidatesTags: ["Posts"],
     }),
     uploadPostImage: builder.mutation({
       query: (data) => ({

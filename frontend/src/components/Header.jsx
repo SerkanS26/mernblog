@@ -52,14 +52,14 @@ const Header = () => {
       >
         <Container>
           <LinkContainer to="/">
-            <Navbar.Brand className="">
+            <Navbar.Brand className="d-flex  justify-content-center">
               <img
                 src={SDLogo}
                 alt="mern blog"
                 style={{ width: "50px", height: "50px" }}
                 className="me-3 rounded-circle"
               />
-              Ser-Dev Blog
+              <h2>ser.dev</h2>
             </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -68,7 +68,7 @@ const Header = () => {
               {userInfo ? (
                 <NavDropdown title={userInfo.name} id="userInfo">
                   <LinkContainer to="/profile">
-                    <NavDropdown.Item>Profile</NavDropdown.Item>
+                    <NavDropdown.Item>Profile & My Posts</NavDropdown.Item>
                   </LinkContainer>
                   <NavDropdown.Item onClick={logoutHandler}>
                     Logout
@@ -80,6 +80,16 @@ const Header = () => {
                     <FaUser /> Sign In
                   </Nav.Link>
                 </LinkContainer>
+              )}
+              {userInfo && userInfo.isAdmin && (
+                <NavDropdown title="Admin" id="adminmenu">
+                  <LinkContainer to="/admin/userlist">
+                    <NavDropdown.Item>Users</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to="/admin/postlist">
+                    <NavDropdown.Item>Posts</NavDropdown.Item>
+                  </LinkContainer>
+                </NavDropdown>
               )}
             </Nav>
           </Navbar.Collapse>

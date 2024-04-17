@@ -6,7 +6,7 @@ import Post from "../models/postModel.js";
 // @route   GET /api/posts
 // @access  Public
 const getPosts = asyncHandler(async (req, res) => {
-  const posts = await Post.find({});
+  const posts = await Post.find({}).populate("user", "name email");
   res.status(200).json(posts);
 });
 
@@ -65,7 +65,7 @@ const updatePost = asyncHandler(async (req, res) => {
   const post = await Post.findById(req.params.id);
 
   if (post) {
-    post.user = req.user._id;
+    // post.user = req.user._id;
     post.title = title;
     post.image = image;
     post.content = content;

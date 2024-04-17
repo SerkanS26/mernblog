@@ -27,6 +27,9 @@ import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import PostEditScreen from "./screens/PostEditScreen";
+import UserListScreen from "./screens/admin/UserListScreen";
+import UserEditScreen from "./screens/admin/UserEditScreen";
+import PostsListScreen from "./screens/admin/PostsListScreen";
 
 // PrivateRoute component
 import PrivateRoute from "./components/PrivateRoute";
@@ -51,6 +54,9 @@ const router = createBrowserRouter(
       {/* Admin Route */}
       <Route path="" element={<AdminRoute />}>
         {/* admin/postlist,  ,admin/userlist , admin/user/:id/edit */}
+        <Route path="/admin/userlist" element={<UserListScreen />} />
+        <Route path="/admin/user/:id/edit" element={<UserEditScreen />} />
+        <Route path="/admin/postlist" element={<PostsListScreen />} />
       </Route>
     </Route>
   )
