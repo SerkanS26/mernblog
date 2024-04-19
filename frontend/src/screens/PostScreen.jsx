@@ -41,15 +41,7 @@ const PostScreen = () => {
         <>
           <Meta title={post?.title} />
           <Row>
-            <Col>
-              <Image
-                src={post?.image}
-                alt={post?.title}
-                fluid
-                style={{ height: "400px", width: "100%" }}
-                className="object-fit-cover"
-              />
-            </Col>
+            <Image src={post?.image} alt={post?.title} fluid />
           </Row>
           <Row>
             <Col>
