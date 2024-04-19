@@ -6,6 +6,9 @@ import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 // React- Router-Bootstrap
 import { LinkContainer } from "react-router-bootstrap";
 
+// components
+import SearchBox from "./SearchBox";
+
 // React-Icons
 import { FaUser } from "react-icons/fa";
 
@@ -65,6 +68,7 @@ const Header = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
+              <SearchBox />
               {userInfo ? (
                 <NavDropdown title={userInfo.name} id="userInfo">
                   <LinkContainer to="/profile">

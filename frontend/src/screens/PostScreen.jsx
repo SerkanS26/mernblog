@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 // components
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import Meta from "../components/Meta";
 
 // apiCall
 import { useGetPostDetailsQuery } from "../slices/ReduxApiCalls/postsApiSlice";
@@ -38,6 +39,7 @@ const PostScreen = () => {
         </Message>
       ) : (
         <>
+          <Meta title={post?.title} />
           <Row>
             <Col>
               <Image

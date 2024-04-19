@@ -1,10 +1,13 @@
 import React from "react";
 
 // react-bootstrap
-import { Button, Table } from "react-bootstrap";
+import { Button, Col, Row, Table } from "react-bootstrap";
 
 // React-icons
 import { FaTrash } from "react-icons/fa";
+
+//react-router-dom
+import { useParams } from "react-router-dom";
 
 // toastify
 import { toast } from "react-toastify";
@@ -12,6 +15,7 @@ import { toast } from "react-toastify";
 // components
 import Loader from "../../components/Loader";
 import Message from "../../components/Message";
+import Paginate from "../../components/Paginate";
 
 // posts api call
 import {
@@ -20,8 +24,11 @@ import {
 } from "../../slices/ReduxApiCalls/postsApiSlice";
 
 const PostsListScreen = () => {
+  // get pageNumber
+  const { pageNumber } = useParams();
+
   // get all posts
-  const { data: posts, error, isLoading, refetch } = useGetPostsQuery();
+  const { data, error, isLoading, refetch } = useGetPostsQuery({ pageNumber });
 
   // delete post
   const [deletePost, { isLoading: loadingDelete }] = useDeletePostMutation();
@@ -61,7 +68,7 @@ const PostsListScreen = () => {
               </tr>
             </thead>
             <tbody>
-              {posts?.map((post) => (
+              {data.posts?.map((post) => (
                 <tr key={post._id}>
                   <td className="d-flex align-items-center justify-content-center">
                     <img
@@ -88,6 +95,16 @@ const PostsListScreen = () => {
               ))}
             </tbody>
           </Table>
+          <Row>
+            <Col className="d-flex justify-content-center my-4">
+              <Paginate
+                pages={data.pages}
+                page={data.page}
+                isAdmin={true}
+                list="postlist"
+              />
+            </Col>
+          </Row>
         </>
       )}
     </>

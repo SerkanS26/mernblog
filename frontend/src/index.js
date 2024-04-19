@@ -9,6 +9,8 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
+import { HelmetProvider } from "react-helmet-async";
+
 // Redux & Store
 import { Provider } from "react-redux";
 import store from "./store";
@@ -41,6 +43,14 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<HomeScreen />} />
+      <Route path="/search/:keyword" element={<HomeScreen />} />
+      <Route path="/page/:pageNumber" element={<HomeScreen />} />
+
+      <Route
+        path="/search/:keyword/page/:pageNumber"
+        element={<HomeScreen />}
+      />
+
       <Route path="/posts/:id" element={<PostScreen />} />
       <Route path="/login" element={<LoginScreen />} />
       <Route path="/register" element={<RegisterScreen />} />
@@ -55,8 +65,16 @@ const router = createBrowserRouter(
       <Route path="" element={<AdminRoute />}>
         {/* admin/postlist,  ,admin/userlist , admin/user/:id/edit */}
         <Route path="/admin/userlist" element={<UserListScreen />} />
-        <Route path="/admin/user/:id/edit" element={<UserEditScreen />} />
         <Route path="/admin/postlist" element={<PostsListScreen />} />
+        <Route
+          path="/admin/postlist/:pageNumber"
+          element={<PostsListScreen />}
+        />
+        <Route
+          path="/admin/userlist/:pageNumber"
+          element={<UserListScreen />}
+        />
+        <Route path="/admin/user/:id/edit" element={<UserEditScreen />} />
       </Route>
     </Route>
   )
@@ -65,9 +83,11 @@ const router = createBrowserRouter(
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
+    <HelmetProvider>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    </HelmetProvider>
   </React.StrictMode>
 );
 

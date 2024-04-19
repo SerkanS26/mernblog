@@ -6,8 +6,20 @@ import Post from "../models/postModel.js";
 // @route   GET /api/posts
 // @access  Public
 const getPosts = asyncHandler(async (req, res) => {
-  const posts = await Post.find({}).populate("user", "name email");
-  res.status(200).json(posts);
+  const pageSize = 8;
+  const page = Number(req.query.pageNumber) || 1;
+
+  const keyword = req.query.keyword
+    ? { title: { $regex: req.query.keyword, $options: "i" } }
+    : {};
+
+  const count = await Post.countDocuments({ ...keyword });
+
+  const posts = await Post.find({ ...keyword })
+    .populate("user", "name email")
+    .limit(pageSize)
+    .skip(pageSize * (page - 1));
+  res.status(200).json({ posts, page, pages: Math.ceil(count / pageSize) });
 });
 
 // @desc    Fetch single post
