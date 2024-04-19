@@ -6,7 +6,7 @@ import Post from "../models/postModel.js";
 // @route   GET /api/posts
 // @access  Public
 const getPosts = asyncHandler(async (req, res) => {
-  const pageSize = 8;
+  const pageSize = process.env.PAGINATION_LIMIT_POSTS;
   const page = Number(req.query.pageNumber) || 1;
 
   const keyword = req.query.keyword
