@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // react-bootstrap
 import { Button, Col, Row, Table } from "react-bootstrap";
@@ -32,6 +32,14 @@ const PostsListScreen = () => {
 
   // delete post
   const [deletePost, { isLoading: loadingDelete }] = useDeletePostMutation();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, [pageNumber]);
 
   // delete post handler
   const deletePostHandler = async (id) => {

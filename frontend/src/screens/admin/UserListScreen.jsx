@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 //react-router-bootstrap
 import { LinkContainer } from "react-router-bootstrap";
@@ -47,6 +47,14 @@ const UserListScreen = () => {
       }
     }
   };
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, [pageNumber]);
 
   return (
     <>

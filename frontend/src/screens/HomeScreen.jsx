@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 
 // react-router-dom
 import { useParams } from "react-router-dom";
@@ -21,6 +21,14 @@ import { useGetPostsQuery } from "../slices/ReduxApiCalls/postsApiSlice";
 const HomeScreen = () => {
   const { pageNumber, keyword } = useParams();
   const { data, error, isLoading } = useGetPostsQuery({ keyword, pageNumber });
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, [pageNumber, keyword]);
 
   return (
     <>
