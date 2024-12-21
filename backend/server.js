@@ -22,8 +22,6 @@ import uploadRoutes from "./routes/uploadRoutes.js";
 
 // port
 const PORT = process.env.PORT || 5000;
-// host
-const HOST = process.env.HOST;
 
 // database connection
 connectDB();
@@ -69,6 +67,6 @@ app.use(notFound);
 // error handler middleware
 app.use(errorHandler);
 
-app.listen(PORT, HOST, () => {
+app.listen(PORT, () => {
   console.log(`Server Is Running On Port ${PORT}`);
 });
